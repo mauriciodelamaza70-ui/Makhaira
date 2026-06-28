@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "audienceReview": {
+      "title": "Audience Review",
+      "description": "A user-submitted review or feedback for the film El Gran Makhaira",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who posted the review" },
+        "authorName": { "type": "string", "description": "The display name of the user" },
+        "authorPhoto": { "type": "string", "description": "The user's picture URL" },
+        "comment": { "type": "string", "description": "The text commentary" },
+        "rating": { "type": "number", "description": "The audience score out of 10" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation" },
+        "hypeCount": { "type": "number", "description": "Number of users who hyped/liked this review" }
+      },
+      "required": ["userId", "authorName", "comment", "rating", "createdAt", "hypeCount"]
+    },
+    "audienceHype": {
+      "title": "Audience Hype",
+      "description": "Hype level tracking for viewers indicating how anticipated the film is",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who voted" },
+        "hypeLevel": { "type": "number", "description": "Hypometer percentage from 1 to 100" },
+        "votedAt": { "type": "string", "format": "date-time", "description": "Vote timestamp" }
+      },
+      "required": ["userId", "hypeLevel", "votedAt"]
+    }
+  },
+  "firestore": {
+    "/audienceReviews/{reviewId}": {
+      "schema": "audienceReview",
+      "description": "Reviews created by registered audience members"
+    },
+    "/audienceHypes/{userId}": {
+      "schema": "audienceHype",
+      "description": "A unique user's hype level vote"
+    }
+  }
+}

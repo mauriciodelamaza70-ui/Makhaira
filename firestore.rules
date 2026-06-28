@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default catch-all denies everything
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Identity and authorization helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9._\\-]+$');
+    }
+
+    // Entity validation helper to enforce strict structure and data types
+    function isValidAudienceReview(data) {
+      return data.keys().hasAll(['userId', 'authorName', 'authorPhoto', 'comment', 'rating', 'createdAt', 'hypeCount'])
+        && data.keys().size() == 7
+        && data.userId is string && data.userId.size() <= 128
+        && data.authorName is string && data.authorName.size() <= 100
+        && data.authorPhoto is string && data.authorPhoto.size() <= 500
+        && data.comment is string && data.comment.size() >= 1 && data.comment.size() <= 1000
+        && (data.rating is int || data.rating is float) && data.rating >= 1 && data.rating <= 10
+        && data.createdAt is timestamp
+        && data.hypeCount is int && data.hypeCount >= 0;
+    }
+
+    function isValidAudienceHype(data) {
+      return data.keys().hasAll(['userId', 'hypeLevel', 'votedAt'])
+        && data.keys().size() == 3
+        && data.userId is string && data.userId.size() <= 128
+        && (data.hypeLevel is int || data.hypeLevel is float) && data.hypeLevel >= 1 && data.hypeLevel <= 100
+        && data.votedAt is timestamp;
+    }
+
+    // Secure matches for reviews
+    match /audienceReviews/{reviewId} {
+      allow read, list: if true;
+
+      allow create: if isSignedIn()
+        && isValidId(reviewId)
+        && isValidAudienceReview(request.resource.data)
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.hypeCount == 0;
+
+      allow update: if isSignedIn()
+        && isValidId(reviewId)
+        && isValidAudienceReview(request.resource.data)
+        && (
+          // Action 1: Creator changes comment/rating
+          (isOwner(resource.data.userId)
+            && request.resource.data.userId == resource.data.userId
+            && request.resource.data.createdAt == resource.data.createdAt
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['comment', 'rating']))
+          ||
+          // Action 2: Viewer increments/decrements the hype reaction on a review
+          (request.resource.data.userId == resource.data.userId
+            && request.resource.data.authorName == resource.data.authorName
+            && request.resource.data.authorPhoto == resource.data.authorPhoto
+            && request.resource.data.comment == resource.data.comment
+            && request.resource.data.rating == resource.data.rating
+            && request.resource.data.createdAt == resource.data.createdAt
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hypeCount'])
+            && (request.resource.data.hypeCount == resource.data.hypeCount + 1 || request.resource.data.hypeCount == resource.data.hypeCount - 1))
+        );
+
+      allow delete: if isSignedIn()
+        && isValidId(reviewId)
+        && isOwner(resource.data.userId);
+    }
+
+    // Secure matches for individual hypes
+    match /audienceHypes/{userId} {
+      allow read, list: if true;
+
+      allow create: if isSignedIn()
+        && isValidId(userId)
+        && userId == request.auth.uid
+        && isValidAudienceHype(request.resource.data)
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.votedAt == request.time;
+
+      allow update: if isSignedIn()
+        && isValidId(userId)
+        && userId == request.auth.uid
+        && isValidAudienceHype(request.resource.data)
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.votedAt == request.time;
+
+      allow delete: if isSignedIn()
+        && isValidId(userId)
+        && userId == request.auth.uid;
+    }
+  }
+}

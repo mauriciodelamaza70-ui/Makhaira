@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;500;600;700;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Cinzel", serif;
+  --font-condensed: "Bebas Neue", sans-serif;
+  --font-serif-elegant: "Libre Baskerville", Georgia, serif;
+
+  /* Custom palette colors for El gran Makhaira (Artistic Flair) */
+  --color-bile: #a8d30d;
+  --color-bile-dark: #769409;
+  --color-steel: #4682b4;
+  --color-steel-dark: #1a3a4a;
+  --color-crimson: #8b0000;
+  --color-crimson-dark: #540000;
+  --color-charcoal: #0d131a;
+  --color-cinema: #0a0e14;
+}
+
+.font-cinzel-forced {
+  font-family: 'Cinzel', serif !important;
+}
+
+.font-serif-elegant {
+  font-family: 'Libre Baskerville', Georgia, serif !important;
+}
+
+.gold-chiseled-title {
+  font-family: 'Cinzel', serif !important;
+  background: linear-gradient(to bottom, #ffe599 0%, #d4af37 40%, #aa7c11 70%, #5a450c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+  
+  /* Sutil light gold border to simulate the bevel of a knife/makhaira blade */
+  -webkit-text-stroke: 0.5px rgba(255, 229, 153, 0.45);
+  
+  /* 3D deep text shadow using filter for seamless rendering on gradient fill */
+  filter: drop-shadow(1px 1px 0px #000000)
+          drop-shadow(2px 2px 0px #000000)
+          drop-shadow(3px 3px 0px #000000)
+          drop-shadow(4px 4px 0px #000000)
+          drop-shadow(5px 5px 0px #000000)
+          drop-shadow(7px 7px 5px rgba(0, 0, 0, 0.95));
+}
+
+.artistic-shadow {
+  text-shadow: 4px 4px 0px var(--color-crimson);
+}
+
+/* Base custom styling for premium interactive elements and scrolls */
+body {
+  background-color: var(--color-charcoal);
+  color: #f3f4f6;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-steel);
+}
+
+/* Flickering light effect */
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 0.99;
+    filter: drop-shadow(0 0 1px rgba(138, 245, 66, 0.4));
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    filter: none;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 4s infinite alternate;
+}
+
+/* Ambient glow animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

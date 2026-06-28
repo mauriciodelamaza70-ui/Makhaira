@@ -1,0 +1,8 @@
+{
+  "name": "El gran Makhaira",
+  "description": "Sitio web oficial de \u0027El gran Makhaira\u0027, una obra de suspenso y acción cargada de misterio, música original y detrás de cámaras.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
