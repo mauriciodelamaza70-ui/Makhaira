@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'motion/react';
 // Cloudinary configuration
 const CLOUD_NAME = 'cwv7pshl';
 // The client-side "list" delivery endpoint lists resources by TAG (not folder).
-// Every image in the "Makhaira" folder must be tagged "Makhaira" in Cloudinary,
+// Every image must be tagged "makhaira-bts" in Cloudinary,
 // and "Resource list" must be enabled in Settings > Security.
-const CLOUDINARY_TAG = 'Makhaira';
+const CLOUDINARY_TAG = 'makhaira-bts';
 const LIST_ENDPOINT = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${CLOUDINARY_TAG}.json`;
 
 interface CloudinaryResource {
@@ -118,7 +118,7 @@ export default function BehindScenes() {
             <ImageOff className="w-8 h-8 text-[#8b0000]" />
             <span className="font-mono text-xs uppercase tracking-widest">No se pudieron cargar las imágenes</span>
             <p className="text-slate-500 text-xs leading-relaxed">
-              Verifica que la opción &quot;Resource list&quot; esté habilitada en Cloudinary y que las imágenes tengan la etiqueta &quot;Makhaira&quot;.
+              Verifica que la opción &quot;Resource list&quot; esté habilitada en Cloudinary y que las imágenes tengan la etiqueta &quot;makhaira-bts&quot;.
             </p>
           </div>
         )}
