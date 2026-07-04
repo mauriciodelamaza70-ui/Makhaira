@@ -5,6 +5,7 @@ import { Eye, ChevronDown, MonitorPlay, Sparkles, VolumeX, AlertTriangle, ArrowR
 // Import our modular cinema landing page components
 import Header from './components/Header';
 import PosterSection from './components/PosterSection';
+import TrailerSection from './components/TrailerSection';
 import BehindScenes from './components/BehindScenes';
 import Critics from './components/Critics';
 import AudienceLedger from './components/AudienceLedger';
@@ -197,6 +198,9 @@ export default function App() {
 
             {/* Poster & Streaming Outlets segment */}
             <PosterSection />
+
+            {/* Official Trailer segment */}
+            <TrailerSection />
 
             {/* Photography & Behind the scenes segment */}
             <BehindScenes />
