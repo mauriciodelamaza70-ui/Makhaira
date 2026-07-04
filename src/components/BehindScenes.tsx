@@ -19,12 +19,21 @@ interface CloudinaryResource {
   context?: { custom?: { caption?: string; alt?: string } };
 }
 
+type Category = 'stills' | 'bts';
+
 interface GalleryAsset {
   id: string;
   title: string;
   thumbSrc: string;
   fullSrc: string;
+  category: Category;
 }
+
+const FILTERS: { id: 'all' | Category; label: string }[] = [
+  { id: 'all', label: 'Todos' },
+  { id: 'stills', label: 'Fotografías (Stills)' },
+  { id: 'bts', label: 'Detrás de Cámaras' },
+];
 
 // Build a Cloudinary delivery URL with automatic format/quality and optional width.
 function buildUrl(resource: CloudinaryResource, width?: number): string {
@@ -37,6 +46,10 @@ export default function BehindScenes() {
   const [items, setItems] = useState<GalleryAsset[]>([]);
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryAsset | null>(null);
+  const [activeFilter, setActiveFilter] = useState<'all' | Category>('all');
+
+  const visibleItems =
+    activeFilter === 'all' ? items : items.filter((item) => item.category === activeFilter);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,6 +67,7 @@ export default function BehindScenes() {
           title: `Detrás de cámaras · ${String(index + 1).padStart(2, '0')}`,
           thumbSrc: buildUrl(resource, 800),
           fullSrc: buildUrl(resource, 1600),
+          category: 'bts',
         }));
 
         if (!cancelled) {
@@ -94,6 +108,28 @@ export default function BehindScenes() {
           </div>
         </div>
 
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-3 mb-12">
+          {FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.id;
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                className={`font-mono text-[11px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full border transition-colors cursor-pointer ${
+                  isActive
+                    ? 'bg-[#a8d30d]/15 border-[#a8d30d]/40 text-[#a8d30d]'
+                    : 'bg-transparent border-[#1a3a4a]/40 text-slate-400 hover:border-[#4682b4]/40 hover:text-white'
+                }`}
+                aria-pressed={isActive}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Loading state */}
         {status === 'loading' && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-slate-400">
@@ -114,17 +150,21 @@ export default function BehindScenes() {
         )}
 
         {/* Empty state */}
-        {status === 'success' && items.length === 0 && (
+        {status === 'success' && visibleItems.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-slate-400 text-center">
             <ImageOff className="w-8 h-8 text-slate-600" />
-            <span className="font-mono text-xs uppercase tracking-widest">Aún no hay imágenes disponibles</span>
+            <span className="font-mono text-xs uppercase tracking-widest">
+              {items.length === 0
+                ? 'Aún no hay imágenes disponibles'
+                : 'No hay imágenes en esta categoría'}
+            </span>
           </div>
         )}
 
         {/* Gallery Grid */}
-        {status === 'success' && items.length > 0 && (
+        {status === 'success' && visibleItems.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {items.map((item, index) => (
+            {visibleItems.map((item, index) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, y: 20 }}
