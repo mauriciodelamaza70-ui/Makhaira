@@ -33,16 +33,6 @@ function buildUrl(resource: CloudinaryResource, width?: number): string {
   return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${transforms.join(',')}/v${resource.version}/${resource.public_id}.${resource.format}`;
 }
 
-// Derive a human-friendly title from the public_id filename.
-function titleFromPublicId(publicId: string): string {
-  const filename = publicId.split('/').pop() ?? publicId;
-  const cleaned = filename
-    .replace(/[-_]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-}
-
 export default function BehindScenes() {
   const [items, setItems] = useState<GalleryAsset[]>([]);
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -59,9 +49,9 @@ export default function BehindScenes() {
         const data: { resources?: CloudinaryResource[] } = await res.json();
         const resources = data.resources ?? [];
 
-        const mapped: GalleryAsset[] = resources.map((resource) => ({
+        const mapped: GalleryAsset[] = resources.map((resource, index) => ({
           id: resource.public_id,
-          title: resource.context?.custom?.caption ?? titleFromPublicId(resource.public_id),
+          title: `Detrás de cámaras · ${String(index + 1).padStart(2, '0')}`,
           thumbSrc: buildUrl(resource, 800),
           fullSrc: buildUrl(resource, 1600),
         }));
