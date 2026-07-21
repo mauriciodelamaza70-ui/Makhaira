@@ -136,7 +136,7 @@ export default function Soundtrack() {
                 LA BANDA SONORA COMPLETA
               </h3>
               <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
-                Banda sonora original de <strong className="text-white">El Gran Makhaira</strong>, compuesta por <strong className="text-white">Mauricio de la Maza-Benignos</strong>.
+                Banda sonora original de <strong className="text-white">El Gran Makhaira</strong>, compuesta por <strong className="text-white">Mauricio de la Maza Benignos</strong>.
               </p>
             </div>
 
