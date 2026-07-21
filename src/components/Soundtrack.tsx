@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Play, Pause, Music, ListVideo } from 'lucide-react';
+import { Play, Pause, ListVideo } from 'lucide-react';
 
 // Cover artwork: Romina frente al tablero de lotería (créditos iniciales)
 import krakatoaCover from '../assets/images/soundtrack_krakatoa_cover.png';
@@ -65,8 +65,7 @@ export default function Soundtrack() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <span className="font-mono text-xs text-[#a8d30d] uppercase tracking-[0.3em] block font-bold">Sinfonía Herrada</span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white tracking-widest mt-2">
+          <h2 className="font-display text-4xl md:text-5xl font-black text-white tracking-widest">
             BANDA SONORA
           </h2>
           <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#8b0000] to-transparent mx-auto mt-4" />
@@ -101,14 +100,10 @@ export default function Soundtrack() {
               </div>
 
               {/* Track info */}
-              <div className="text-center space-y-1 mb-6">
-                <span className="font-mono text-[9px] text-[#8b0000] uppercase tracking-[0.2em] font-bold">TEMA DESTACADO</span>
+              <div className="text-center mb-6">
                 <h3 className="font-display text-2xl font-bold text-white tracking-wide">
-                  KRAKATOA
+                  El Gran Makhaira
                 </h3>
-                <p className="font-mono text-xs text-slate-500 font-bold uppercase tracking-widest">
-                  Canción de créditos iniciales
-                </p>
               </div>
 
               {/* Minimalist play button */}
@@ -137,15 +132,11 @@ export default function Soundtrack() {
           {/* Column 2: Full Soundtrack Track List */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#8b0000]/15 border border-[#8b0000]/30 rounded-full">
-                <Music className="w-3.5 h-3.5 text-[#8b0000]" />
-                <span className="font-mono text-[10px] text-[#8b0000] tracking-widest uppercase font-bold">Playlist Completa</span>
-              </div>
               <h3 className="font-display text-2xl md:text-3xl text-white tracking-wider">
                 LA BANDA SONORA COMPLETA
               </h3>
               <p className="text-slate-400 text-xs md:text-sm leading-relaxed">
-                La partitura completa de <strong className="text-white">Makhaira</strong>, compuesta por <strong className="text-white">Mauricio de la Maza</strong>. Toca cualquier pista para reproducirla.
+                Banda sonora original de <strong className="text-white">El Gran Makhaira</strong>, compuesta por <strong className="text-white">Mauricio de la Maza-Benignos</strong>.
               </p>
             </div>
 
