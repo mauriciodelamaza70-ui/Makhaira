@@ -13,7 +13,7 @@ import Soundtrack from './components/Soundtrack';
 import Footer from './components/Footer';
 
 // Import our film still to act as the massive backdrop
-import heroBackdrop from './assets/images/film_still_1781135393920.png';
+import heroBackdrop from './assets/images/hero_makhaira_backdrop.png';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -95,16 +95,20 @@ export default function App() {
               id="hero"
               className="relative min-h-[95vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-black"
             >
-              {/* Parallax-style giant blurred backdrop of the character under blue lights and green fog */}
+              {/* Parallax-style giant backdrop of the character under warm light and green ambience */}
               <div className="absolute inset-0 z-0">
                 <img
                   src={heroBackdrop}
                   alt="Encuadre dramático de El gran Makhaira"
                   referrerPolicy="no-referrer"
-                  className="object-cover w-full h-full opacity-45 scale-105 filter saturate-[0.85] contrast-[1.1]"
+                  className="object-cover w-full h-full object-[65%_center] scale-105 filter saturate-[0.95] contrast-[1.05]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/50 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a] via-transparent to-[#0d131a] pointer-events-none" />
+                {/* Softer overall dark overlay (~40%) to preserve atmosphere and texture */}
+                <div className="absolute inset-0 bg-[#0d131a]/40 pointer-events-none" />
+                {/* Stronger bottom gradient to keep the subtitle and buttons legible */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/70 to-transparent pointer-events-none" />
+                {/* Subtle side vignette blend into the page background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a]/70 via-transparent to-[#0d131a]/70 pointer-events-none" />
               </div>
 
               {/* Ambient visual dust particles and fog simulation (exact theme coloring) */}
@@ -116,7 +120,7 @@ export default function App() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0e14]/80 backdrop-blur-md border border-[#1a3a4a] rounded-full">
                   <span className="w-2 h-2 rounded-full bg-[#8b0000] animate-ping" />
                   <span className="font-mono text-[10px] text-slate-300 tracking-widest uppercase">
-                    SELECCIÓN OFICIAL • PRÓXIMAMENTE EN STREAMING
+                    UNA PRODUCCIÓN DE DE LA MAZA CONSULTING & FILMS • PRÓXIMAMENTE
                   </span>
                 </div>
 
@@ -147,11 +151,14 @@ export default function App() {
                 {/* Main Action buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <button
-                    onClick={handleHeroScroll}
+                    onClick={() => {
+                      const trailerSec = document.getElementById('trailer-section');
+                      if (trailerSec) trailerSec.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="w-full sm:w-auto font-mono text-xs uppercase tracking-widest font-bold bg-[#8b0000] hover:bg-[#a8d30d] hover:text-black hover:scale-105 active:scale-95 text-white px-8 py-4 rounded border border-[#1a3a4a] transition-all duration-300 shadow-lg shadow-red-950/20 flex justify-center items-center gap-2 cursor-pointer"
                   >
                     <MonitorPlay className="w-4 h-4 fill-current" />
-                    Plataformas de Estreno
+                    Próximamente
                   </button>
                   
                   <button
