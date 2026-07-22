@@ -13,7 +13,7 @@ import Soundtrack from './components/Soundtrack';
 import Footer from './components/Footer';
 
 // Import our film still to act as the massive backdrop
-import heroBackdrop from './assets/images/film_still_1781135393920.png';
+import heroBackdrop from './assets/images/hero_makhaira_backdrop.png';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -95,16 +95,20 @@ export default function App() {
               id="hero"
               className="relative min-h-[95vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-black"
             >
-              {/* Parallax-style giant blurred backdrop of the character under blue lights and green fog */}
+              {/* Parallax-style giant backdrop of the character under warm light and green ambience */}
               <div className="absolute inset-0 z-0">
                 <img
                   src={heroBackdrop}
                   alt="Encuadre dramático de El gran Makhaira"
                   referrerPolicy="no-referrer"
-                  className="object-cover w-full h-full opacity-45 scale-105 filter saturate-[0.85] contrast-[1.1]"
+                  className="object-cover w-full h-full object-[65%_center] scale-105 filter saturate-[0.95] contrast-[1.05]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/50 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a] via-transparent to-[#0d131a] pointer-events-none" />
+                {/* Softer overall dark overlay (~40%) to preserve atmosphere and texture */}
+                <div className="absolute inset-0 bg-[#0d131a]/40 pointer-events-none" />
+                {/* Stronger bottom gradient to keep the subtitle and buttons legible */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/70 to-transparent pointer-events-none" />
+                {/* Subtle side vignette blend into the page background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a]/70 via-transparent to-[#0d131a]/70 pointer-events-none" />
               </div>
 
               {/* Ambient visual dust particles and fog simulation (exact theme coloring) */}
