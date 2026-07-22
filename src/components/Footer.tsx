@@ -27,11 +27,11 @@ export default function Footer() {
             </div>
             
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
-              Una co-producción cinematográfica independiente griega-iberoamericana. Rodada íntegramente en locaciones de Grecia y los valles fríos de Morelia.
+              Una producción cinematográfica independiente, filmada íntegramente en Monterrey, Nuevo León, México.
             </p>
 
             <blockquote className="border-l-2 border-[#ff1e1e] pl-3 py-1 italic font-display text-xs text-slate-300">
-              "El hilo de la traición corta más profundo que el acero."
+              "Makhaira nunca falla."
             </blockquote>
           </div>
 
@@ -39,10 +39,10 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="font-mono text-xs uppercase tracking-widest text-[#4a7ba5] font-bold">Distribución</h4>
             <ul className="space-y-1.5 text-xs text-slate-400 font-mono">
-              <li><span className="hover:text-white transition-colors cursor-pointer">Prensa & Screeners</span></li>
-              <li><span className="hover:text-white transition-colors cursor-pointer">Requisitos de Exhibición</span></li>
-              <li><span className="hover:text-white transition-colors cursor-pointer">Ventas Internacionales</span></li>
-              <li><span className="hover:text-white transition-colors cursor-pointer">Contacto de Prensa</span></li>
+              <li><a href="https://mauriciodelamazabenignos.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">Prensa & Screeners</a></li>
+              <li><a href="https://mauriciodelamazabenignos.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">Requisitos de Exhibición</a></li>
+              <li><a href="https://mauriciodelamazabenignos.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">Ventas Internacionales</a></li>
+              <li><a href="https://mauriciodelamazabenignos.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors cursor-pointer">Contacto de Prensa</a></li>
             </ul>
           </div>
 
@@ -50,10 +50,11 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="font-mono text-xs uppercase tracking-widest text-[#ff1e1e] font-bold">Producción</h4>
             <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Director: <strong className="text-white">Mauricio de la Maza</strong><br />
-              Sonido & Mezcla: <strong className="text-white">Cosette Synths</strong><br />
-              Cámara & Rig: <strong className="text-white">ARRI Alexa Digital</strong><br />
-              Agencia: <strong className="text-white">Veo Production Corp</strong>
+              Un film de: <strong className="text-white">Mauricio de la Maza-Benignos</strong><br />
+              Dirigido por: <strong className="text-white">Mauricio de la Maza-Benignos y Sofía Díaz Garza</strong><br />
+              Dirección de Fotografía: <strong className="text-white">Mauricio de la Maza-Benignos</strong><br />
+              Compositor / Banda Sonora: <strong className="text-white">Mauricio de la Maza-Benignos</strong><br />
+              Producción: <strong className="text-white">De la Maza Consulting & Films</strong>
             </p>
           </div>
 
@@ -62,7 +63,7 @@ export default function Footer() {
         {/* Closing details bar */}
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600">
           <div>
-            <span>© {currentYear} VEO PRODUCTION CORP. TODOS LOS DERECHOS RESERVADOS.</span>
+            <span>© {currentYear} Mauricio de la Maza-Benignos. Todos los derechos reservados.</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -72,7 +73,7 @@ export default function Footer() {
             </span>
             <span className="flex items-center gap-1.5">
               <Shield className="w-4 h-4 text-slate-700" />
-              <span>Clasificación: R [18+]</span>
+              <span>Contenido para audiencia adulta</span>
             </span>
           </div>
         </div>
