@@ -208,14 +208,14 @@ export default function App() {
             {/* Official Trailer segment */}
             <TrailerSection />
 
-            {/* Photography & Behind the scenes segment */}
-            <BehindScenes />
-
             {/* Cast & Crew segment */}
             <Cast />
 
             {/* Sound Synthesizer & Soundtrack segment */}
             <Soundtrack />
+
+            {/* Photography & Behind the scenes segment (last) */}
+            <BehindScenes />
 
             {/* Footer segment */}
             <Footer />
