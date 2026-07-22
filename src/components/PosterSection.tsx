@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Play, Tv } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 
 // Import the official movie poster asset
 import moviePoster from '../assets/images/poster_makhaira_official.png';
 
 export default function PosterSection() {
-  const [revealTrailer, setRevealTrailer] = useState(false);
-
   return (
     <section id="poster-section" className="py-24 relative overflow-hidden bg-[#0a0e14] border-t border-[#1a3a4a]/45">
       {/* Background Gradients & Ambient Mist */}
@@ -51,13 +48,16 @@ export default function PosterSection() {
                     
                     <div className="space-y-3">
                       <p className="text-xs text-slate-300 font-mono">
-                        <span className="text-slate-500">DIRECTOR:</span> Mauricio de la Maza<br />
-                        <span className="text-slate-500">PAÍS:</span> México / Grecia<br />
-                        <span className="text-slate-500">GÉNERO:</span> Thriller Filosófico, Neo-Noir<br />
-                        <span className="text-slate-500">DURACIÓN:</span> 124 min
+                        <span className="text-slate-500">DIRECTOR:</span> Mauricio de la Maza-Benignos y Sofía Díaz Garza<br />
+                        <span className="text-slate-500">PAÍS:</span> México<br />
+                        <span className="text-slate-500">GÉNERO:</span> Drama, Thriller, Tragedia, Noir<br />
+                        <span className="text-slate-500">DURACIÓN:</span> 1h 33min
                       </p>
                       <button 
-                        onClick={() => setRevealTrailer(true)}
+                        onClick={() => {
+                          const trailerSec = document.getElementById('trailer-section');
+                          if (trailerSec) trailerSec.scrollIntoView({ behavior: 'smooth' });
+                        }}
                         className="w-full py-2.5 bg-[#8b0000] hover:bg-[#a8d30d] text-white hover:text-black font-mono text-xs uppercase tracking-widest font-bold transition-all rounded flex items-center justify-center gap-1 cursor-pointer"
                       >
                         <Play className="w-4 h-4 fill-current" />
@@ -132,69 +132,6 @@ export default function PosterSection() {
         </div>
       </div>
 
-      {/* Cinematic Teaser Trailer Modal */}
-      <AnimatePresence>
-        {revealTrailer && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setRevealTrailer(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/98 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#0d131a] border border-[#1a3a4a] p-2 rounded-2xl max-w-4xl w-full aspect-video shadow-2xl relative flex flex-col justify-between animate-glow"
-            >
-              {/* Simulation of a premium cinematic video player */}
-              <div className="relative flex-1 bg-black rounded-lg overflow-hidden flex flex-col justify-center items-center p-8 text-center group">
-                <div className="absolute inset-0 bg-[#a8d30d]/5 mix-blend-color opacity-30 pointer-events-none" />
-                
-                {/* Overlay visual noise and scanner lines */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 pointer-events-none" />
-
-                <div className="relative z-10 space-y-4">
-                  <div className="inline-flex p-4 rounded-full bg-[#8b0000]/15 border border-[#8b0000]/40 text-[#8b0000] animate-pulse">
-                    <Play className="w-8 h-8 fill-current" />
-                  </div>
-                  <h4 className="font-display font-black text-2xl tracking-[0.25em] text-white">TEASER TRAILER EN EXCLUSIVA</h4>
-                  <p className="text-xs text-slate-400 max-w-md mx-auto font-sans">
-                    La bruma del arroyo se desvanece... El filo curvo del makhaira aguarda sediento de venganza. Estreno en salas seleccionadas el próximo Otoño.
-                  </p>
-                  
-                  {/* Fake progress bar */}
-                  <div className="w-64 h-1 bg-slate-900 rounded-full mx-auto relative overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                      className="absolute top-0 bottom-0 left-0 bg-[#a8d30d]" 
-                    />
-                  </div>
-                </div>
-
-                {/* Bottom player bar controls mock */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-slate-500 font-mono text-[9px]">
-                  <span>VEO PRODUCTION CORP / TEASER CLIP 01</span>
-                  <span>TIME [0:12 / 1:45] REGION: LATAM</span>
-                </div>
-              </div>
-
-              <div className="flex justify-end pt-2 pb-1 px-2">
-                <button
-                  onClick={() => setRevealTrailer(false)}
-                  className="font-mono text-xs uppercase tracking-wider text-slate-400 hover:text-white px-4 py-1 hover:bg-[#0a0e14] rounded transition-all cursor-pointer"
-                >
-                  Cerrar Reproductor
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
