@@ -3,8 +3,8 @@ import { Play, Tv, ArrowUpRight, ShieldCheck, HelpCircle, Eye, Info } from 'luci
 import { motion, AnimatePresence } from 'motion/react';
 import { StreamingPlatform } from '../types';
 
-// Import our custom-generated movie poster asset
-import moviePoster from '../assets/images/movie_poster_1781135351005.png';
+// Import the official movie poster asset
+import moviePoster from '../assets/images/poster_makhaira_official.png';
 
 export default function PosterSection() {
   const [redirectingPlatform, setRedirectingPlatform] = useState<StreamingPlatform | null>(null);
@@ -136,15 +136,6 @@ export default function PosterSection() {
                       </button>
                     </div>
                   </div>
-                </div>
-                
-                {/* Lightbox status bar */}
-                <div className="mt-3 flex justify-between items-center text-[10px] font-mono text-slate-500 px-1 border-t border-[#1a3a4a]/40 pt-2.5 strain">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#a8d30d] animate-ping" />
-                    <span className="capitalize">IMAX DIGITAL</span>
-                  </div>
-                  <div>Nº ID: MAK-2026</div>
                 </div>
               </div>
             </div>
