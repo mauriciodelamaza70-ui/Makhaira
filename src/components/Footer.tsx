@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
             
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
-              Una co-producción cinematográfica independiente griega-iberoamericana. Rodada íntegramente en locaciones de Grecia y los valles fríos de Morelia.
+              Una producción cinematográfica independiente, filmada íntegramente en Monterrey, Nuevo León, México.
             </p>
 
             <blockquote className="border-l-2 border-[#ff1e1e] pl-3 py-1 italic font-display text-xs text-slate-300">
