@@ -88,11 +88,11 @@ export default function Header() {
                 Estreno Mundial
               </span>
               <button
-                onClick={() => scrollToSection('poster-section')}
+                onClick={() => scrollToSection('trailer-section')}
                 className="font-display text-[11px] uppercase tracking-[0.15em] bg-gradient-to-r from-[#8b0000] to-red-900 hover:from-[#8b0000] hover:to-[#a8d30d] hover:text-black text-white px-5 py-2.5 rounded border border-[#8b0000]/40 transition-all duration-500 shadow-md shadow-red-950/40 font-bold flex items-center gap-1 cursor-pointer [font-variant:small-caps] font-cinzel-forced"
                 style={{ fontFamily: '"Cinzel", serif' }}
               >
-                Ver En Streaming
+                Próximamente
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -153,11 +153,11 @@ export default function Header() {
                   Makhaira está listo para cortar
                 </p>
                 <button
-                  onClick={() => scrollToSection('poster-section')}
+                  onClick={() => scrollToSection('trailer-section')}
                   className="font-display text-xs uppercase tracking-widest bg-gradient-to-r from-[#8b0000] to-red-900 text-white px-8 py-3.5 rounded border border-[#8b0000]/40 font-bold shadow-lg w-full flex justify-center items-center gap-2 hover:from-[#8b0000] hover:to-[#a8d30d] hover:text-black transition-all font-cinzel-forced"
                   style={{ fontFamily: '"Cinzel", serif' }}
                 >
-                  Ver En Streaming
+                  Próximamente
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </motion.div>

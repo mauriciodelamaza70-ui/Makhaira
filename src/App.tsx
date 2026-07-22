@@ -120,7 +120,7 @@ export default function App() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0e14]/80 backdrop-blur-md border border-[#1a3a4a] rounded-full">
                   <span className="w-2 h-2 rounded-full bg-[#8b0000] animate-ping" />
                   <span className="font-mono text-[10px] text-slate-300 tracking-widest uppercase">
-                    SELECCIÓN OFICIAL • PRÓXIMAMENTE EN STREAMING
+                    UNA PRODUCCIÓN DE DE LA MAZA CONSULTING & FILMS • PRÓXIMAMENTE
                   </span>
                 </div>
 
@@ -151,11 +151,14 @@ export default function App() {
                 {/* Main Action buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <button
-                    onClick={handleHeroScroll}
+                    onClick={() => {
+                      const trailerSec = document.getElementById('trailer-section');
+                      if (trailerSec) trailerSec.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="w-full sm:w-auto font-mono text-xs uppercase tracking-widest font-bold bg-[#8b0000] hover:bg-[#a8d30d] hover:text-black hover:scale-105 active:scale-95 text-white px-8 py-4 rounded border border-[#1a3a4a] transition-all duration-300 shadow-lg shadow-red-950/20 flex justify-center items-center gap-2 cursor-pointer"
                   >
                     <MonitorPlay className="w-4 h-4 fill-current" />
-                    Plataformas de Estreno
+                    Próximamente
                   </button>
                   
                   <button
