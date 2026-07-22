@@ -56,7 +56,7 @@ export default function App() {
                 <div className="flex justify-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#a8d30d] animate-ping mr-2" />
                   <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-[#a8d30d] font-bold">
-                    VEO PICTURES S.A.
+                    DE LA MAZA CONSULTING & FILMS
                   </span>
                 </div>
                 
@@ -67,7 +67,7 @@ export default function App() {
                 <div className="h-[1px] w-12 bg-slate-800 mx-auto" />
                 
                 <p className="font-mono text-xs text-slate-500 tracking-wider">
-                  UNA EXPERIENCIA DE MAURICIO DE LA MAZA
+                  UN FILM DE MAURICIO DE LA MAZA-BENIGNOS
                 </p>
               </motion.div>
             </div>
