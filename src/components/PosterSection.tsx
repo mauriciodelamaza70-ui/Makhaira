@@ -137,15 +137,6 @@ export default function PosterSection() {
                     </div>
                   </div>
                 </div>
-                
-                {/* Lightbox status bar */}
-                <div className="mt-3 flex justify-between items-center text-[10px] font-mono text-slate-500 px-1 border-t border-[#1a3a4a]/40 pt-2.5 strain">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#a8d30d] animate-ping" />
-                    <span className="capitalize">IMAX DIGITAL</span>
-                  </div>
-                  <div>Nº ID: MAK-2026</div>
-                </div>
               </div>
             </div>
           </div>
