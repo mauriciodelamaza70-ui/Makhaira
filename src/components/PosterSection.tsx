@@ -1,83 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Play, Tv, ArrowUpRight, ShieldCheck, HelpCircle, Eye, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { Play, Tv } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { StreamingPlatform } from '../types';
 
 // Import the official movie poster asset
 import moviePoster from '../assets/images/poster_makhaira_official.png';
 
 export default function PosterSection() {
-  const [redirectingPlatform, setRedirectingPlatform] = useState<StreamingPlatform | null>(null);
-  const [countdown, setCountdown] = useState(3);
   const [revealTrailer, setRevealTrailer] = useState(false);
-
-  const platforms: StreamingPlatform[] = [
-    {
-      id: 'netflix',
-      name: 'Netflix',
-      url: 'https://netflix.com',
-      logoType: 'netflix',
-      availabilityText: 'Disponible en Ultra HD 4K',
-      priceType: 'Suscripción Premium'
-    },
-    {
-      id: 'amazon',
-      name: 'Prime Video',
-      url: 'https://primevideo.com',
-      logoType: 'amazon',
-      availabilityText: 'Compra o Renta Digital',
-      priceType: 'Gratis con Prime'
-    },
-    {
-      id: 'apple',
-      name: 'Apple TV',
-      url: 'https://tv.apple.com',
-      logoType: 'apple',
-      availabilityText: 'HDR & Atmos Soportado',
-      priceType: 'Compra Digital / Renta'
-    },
-    {
-      id: 'mubi',
-      name: 'MUBI',
-      url: 'https://mubi.com',
-      logoType: 'mubi',
-      availabilityText: 'Selección de Directores',
-      priceType: 'Suscripción Independiente'
-    },
-    {
-      id: 'shudder',
-      name: 'Shudder',
-      url: 'https://shudder.com',
-      logoType: 'shudder',
-      availabilityText: 'Exclusivo Thriller & Suspenso',
-      priceType: 'Suscripción de Terror'
-    }
-  ];
-
-  useEffect(() => {
-    let timer: any;
-    if (redirectingPlatform && countdown > 0) {
-      timer = setTimeout(() => {
-        setCountdown(countdown - 1);
-      }, 1000);
-    } else if (redirectingPlatform && countdown === 0) {
-      // Simulate real redirection by opening in new tab
-      window.open(redirectingPlatform.url, '_blank', 'noopener,noreferrer');
-      setRedirectingPlatform(null);
-      setCountdown(3);
-    }
-    return () => clearTimeout(timer);
-  }, [redirectingPlatform, countdown]);
-
-  const handlePlatformClick = (platform: StreamingPlatform) => {
-    setRedirectingPlatform(platform);
-    setCountdown(3);
-  };
-
-  const cancelRedirection = () => {
-    setRedirectingPlatform(null);
-    setCountdown(3);
-  };
 
   return (
     <section id="poster-section" className="py-24 relative overflow-hidden bg-[#0a0e14] border-t border-[#1a3a4a]/45">
@@ -87,9 +16,9 @@ export default function PosterSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <span className="font-mono text-xs text-[#a8d30d] uppercase tracking-[0.3em] font-bold">Exhibición Global</span>
+          <span className="font-mono text-xs text-[#a8d30d] uppercase tracking-[0.3em] font-bold">Galería</span>
           <h2 className="font-display text-4xl md:text-5xl font-black text-white tracking-widest mt-2">
-            EL PÓSTER Y LOGO OFICIAL
+            Arte
           </h2>
           <div className="w-24 h-[2px] bg-gradient-to-r from-[#a8d30d] via-[#4682b4] to-[#8b0000] mx-auto mt-4" />
         </div>
@@ -183,140 +112,25 @@ export default function PosterSection() {
               </div>
             </div>
 
-            {/* Streaming redirection portal */}
+            {/* Streaming availability */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#1a3a4a]/40 pb-2">
+              <div className="flex items-center border-b border-[#1a3a4a]/40 pb-2">
                 <h4 className="font-mono text-xs text-slate-400 uppercase tracking-widest flex items-center gap-2">
                   <Tv className="w-4 h-4 text-[#8b0000]" />
                   Canales de Streaming Oficial
                 </h4>
-                <span className="text-[10px] font-mono text-[#a8d30d] bg-[#a8d30d]/10 border border-[#a8d30d]/20 px-2 py-0.5 rounded font-bold">
-                  BOLETOS DISPONIBLES
-                </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {platforms.map((platform) => (
-                  <div
-                    key={platform.id}
-                    onClick={() => handlePlatformClick(platform)}
-                    className="group relative overflow-hidden bg-[#0d131a]/50 hover:bg-[#0a0e14] border border-[#1a3a4a]/50 hover:border-[#4682b4]/50 rounded-xl p-4 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-black/60 flex items-center justify-between"
-                  >
-                    {/* Hover indicator lines */}
-                    <div className="absolute top-0 bottom-0 left-0 w-1 bg-[#8b0000] opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                    <div className="space-y-1 z-10">
-                      <span className="font-display font-black text-lg tracking-wider text-white group-hover:text-[#a8d30d] transition-colors">
-                        {platform.name}
-                      </span>
-                      <p className="text-[10px] font-mono text-slate-400">{platform.availabilityText}</p>
-                      <p className="text-[9px] font-mono text-[#4682b4] uppercase tracking-wider">{platform.priceType}</p>
-                    </div>
-
-                    <div className="p-2 bg-slate-950/80 rounded-lg group-hover:bg-[#8b0000]/10 border border-slate-800/80 transition-colors z-10">
-                      <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#8b0000] transition-colors" />
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center gap-3 bg-[#0d131a]/50 border border-[#1a3a4a]/50 rounded-xl p-5 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-[#a8d30d] shrink-0" />
+                <p className="font-mono text-sm text-slate-300 uppercase tracking-widest">
+                  Próximamente disponible en streaming
+                </p>
               </div>
-            </div>
-
-            {/* Extra production notice */}
-            <div className="flex gap-4 p-4 rounded-xl bg-[#0a0e14]/40 border border-[#1a3a4a]/40 text-slate-400 text-xs shadow-inner">
-              <Info className="w-5 h-5 text-[#8b0000] shrink-0 animate-bounce" />
-              <p>
-                Al hacer clic en las plataformas, se generará vuestros accesos de pre-compra cifrados integrando código de visualización. Válido en toda Hispanoamérica y Grecia.
-              </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Cinematic Redirection Gateway Modal Overlay */}
-      <AnimatePresence>
-        {redirectingPlatform && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 10 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 10 }}
-              className="bg-[#0d131a] border border-[#8b0000]/40 p-8 rounded-2xl max-w-md w-full shadow-2xl relative overflow-hidden text-center"
-            >
-              {/* Abstract decorative beam */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#ffd32a00] via-[#a8d30d] to-[#ffd32a00]" />
-
-              <div className="relative w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                {/* Loader track animation */}
-                <svg className="w-full h-full transform -rotate-90">
-                  <circle
-                    cx="40"
-                    cy="40"
-                    r="34"
-                    stroke="#1e293b"
-                    strokeWidth="3"
-                    fill="transparent"
-                  />
-                  <motion.circle
-                    cx="40"
-                    cy="40"
-                    r="34"
-                    stroke="#a8d30d"
-                    strokeWidth="3.5"
-                    fill="transparent"
-                    strokeDasharray="213"
-                    initial={{ strokeDashoffset: 213 }}
-                    animate={{ strokeDashoffset: 213 - (213 * (3 - countdown)) / 3 }}
-                    transition={{ ease: 'linear', duration: 1 }}
-                  />
-                </svg>
-                <span className="absolute font-mono text-2xl font-bold text-white">
-                  {countdown}
-                </span>
-              </div>
-
-              <span className="inline-block px-3 py-1 bg-[#a8d30d]/10 border border-[#a8d30d]/30 text-[#a8d30d] font-mono text-[9px] uppercase tracking-widest mb-4">
-                Pasarela de Distribución
-              </span>
-
-              <h3 className="font-display text-xl text-white font-bold tracking-wider mb-2">
-                REDIRECCIÓN EN PROCESO
-              </h3>
-              
-              <p className="text-xs text-slate-400 mb-6">
-                Preparando conexión segura con <strong className="text-white font-mono">{redirectingPlatform.name}</strong> para ver <strong className="text-[#4682b4]">El gran Makhaira</strong>.
-              </p>
-
-              <div className="flex flex-col gap-2.5">
-                <button
-                  onClick={() => {
-                    window.open(redirectingPlatform.url, '_blank', 'noopener,noreferrer');
-                    setRedirectingPlatform(null);
-                  }}
-                  className="font-mono text-[11px] uppercase tracking-widest text-[#0d131a] bg-white hover:bg-[#a8d30d] font-bold py-2.5 rounded transition-colors w-full cursor-pointer"
-                >
-                  Saltar Espera Ahora
-                </button>
-                <button
-                  onClick={cancelRedirection}
-                  className="font-mono text-[11px] uppercase tracking-widest text-[#8b0000] hover:text-white py-1.5 transition-colors cursor-pointer"
-                >
-                  Cancelar Redirección
-                </button>
-              </div>
-
-              <div className="mt-6 flex items-center justify-center gap-1.5 text-[9px] font-mono text-slate-500">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#4682b4]" />
-                Enlace de taquilla oficial certificado
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Cinematic Teaser Trailer Modal */}
       <AnimatePresence>
