@@ -3,8 +3,8 @@ import { Play, Tv, ArrowUpRight, ShieldCheck, HelpCircle, Eye, Info } from 'luci
 import { motion, AnimatePresence } from 'motion/react';
 import { StreamingPlatform } from '../types';
 
-// Import our custom-generated movie poster asset
-import moviePoster from '../assets/images/movie_poster_1781135351005.png';
+// Import the official movie poster asset
+import moviePoster from '../assets/images/poster_makhaira_official.png';
 
 export default function PosterSection() {
   const [redirectingPlatform, setRedirectingPlatform] = useState<StreamingPlatform | null>(null);
