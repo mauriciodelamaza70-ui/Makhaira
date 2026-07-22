@@ -7,8 +7,7 @@ import Header from './components/Header';
 import PosterSection from './components/PosterSection';
 import TrailerSection from './components/TrailerSection';
 import BehindScenes from './components/BehindScenes';
-import Critics from './components/Critics';
-import AudienceLedger from './components/AudienceLedger';
+import Cast from './components/Cast';
 import Soundtrack from './components/Soundtrack';
 import Footer from './components/Footer';
 
@@ -212,11 +211,8 @@ export default function App() {
             {/* Photography & Behind the scenes segment */}
             <BehindScenes />
 
-            {/* Critic's Reviews segment */}
-            <Critics />
-
-            {/* Real-time Audience Expectancy and ledger segment (Firebase powered) */}
-            <AudienceLedger />
+            {/* Cast & Crew segment */}
+            <Cast />
 
             {/* Sound Synthesizer & Soundtrack segment */}
             <Soundtrack />
