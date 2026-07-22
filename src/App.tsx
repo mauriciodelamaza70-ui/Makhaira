@@ -120,7 +120,7 @@ export default function App() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0e14]/80 backdrop-blur-md border border-[#1a3a4a] rounded-full">
                   <span className="w-2 h-2 rounded-full bg-[#8b0000] animate-ping" />
                   <span className="font-mono text-[10px] text-slate-300 tracking-widest uppercase">
-                    UNA PRODUCCIÓN DE DE LA MAZA CONSULTING & FILMS • PRÓXIMAMENTE
+                    Una producción de De la Maza Consulting & Films • Próximamente
                   </span>
                 </div>
 
