@@ -3,8 +3,11 @@ import { Play, Pause, ListVideo } from 'lucide-react';
 
 // Cover artwork: Romina frente al tablero de lotería (créditos iniciales)
 import krakatoaCover from '../assets/images/soundtrack_krakatoa_cover.png';
+// Cover artwork: acróbata enmascarada (Comienza la función)
+import funcionCover from '../assets/images/soundtrack_funcion_cover.png';
 
 const KRAKATOA_VIDEO_ID = 'sKX4okPXEyA';
+const FUNCION_VIDEO_ID = 'AR3BTkI7FJA';
 
 interface Track {
   id: string;
@@ -45,17 +48,22 @@ const TRACKS: Track[] = [
 export default function Soundtrack() {
   const [krakatoaPlaying, setKrakatoaPlaying] = useState(false);
   const krakatoaRef = useRef<HTMLIFrameElement>(null);
+  const [funcionPlaying, setFuncionPlaying] = useState(false);
+  const funcionRef = useRef<HTMLIFrameElement>(null);
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
 
-  function toggleKrakatoa() {
-    const frame = krakatoaRef.current;
+  function togglePlayer(
+    frame: HTMLIFrameElement | null,
+    playing: boolean,
+    setPlaying: (updater: (prev: boolean) => boolean) => void,
+  ) {
     if (!frame || !frame.contentWindow) return;
-    const func = krakatoaPlaying ? 'pauseVideo' : 'playVideo';
+    const func = playing ? 'pauseVideo' : 'playVideo';
     frame.contentWindow.postMessage(
       JSON.stringify({ event: 'command', func, args: [] }),
       '*',
     );
-    setKrakatoaPlaying((prev) => !prev);
+    setPlaying((prev) => !prev);
   }
 
   return (
@@ -72,8 +80,8 @@ export default function Soundtrack() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Column 1: Featured Track — Krakatoa */}
-          <div className="lg:col-span-5">
+          {/* Column 1: Featured Tracks */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
             <div className="bg-[#0a0e14] p-6 sm:p-8 rounded-2xl border border-[#1a3a4a] shadow-2xl relative overflow-hidden group">
               <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#a8d30d]/5 rounded-full blur-2xl group-hover:bg-[#a8d30d]/10 transition-colors pointer-events-none" />
 
@@ -110,7 +118,7 @@ export default function Soundtrack() {
               <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={toggleKrakatoa}
+                  onClick={() => togglePlayer(krakatoaRef.current, krakatoaPlaying, setKrakatoaPlaying)}
                   aria-pressed={krakatoaPlaying}
                   aria-label={krakatoaPlaying ? 'Pausar Krakatoa' : 'Reproducir Krakatoa'}
                   className="flex items-center justify-center w-16 h-16 rounded-full bg-[#a8d30d] text-[#0a0e14] hover:bg-[#b9e320] transition-colors shadow-lg shadow-[#a8d30d]/20 cursor-pointer"
@@ -125,6 +133,61 @@ export default function Soundtrack() {
 
               <p className="mt-4 text-[9px] text-slate-500 text-center font-mono uppercase tracking-widest">
                 {krakatoaPlaying ? 'Reproduciendo…' : 'Presiona para escuchar'}
+              </p>
+            </div>
+
+            {/* Featured Track — Comienza la función */}
+            <div className="bg-[#0a0e14] p-6 sm:p-8 rounded-2xl border border-[#1a3a4a] shadow-2xl relative overflow-hidden group">
+              <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#a8d30d]/5 rounded-full blur-2xl group-hover:bg-[#a8d30d]/10 transition-colors pointer-events-none" />
+
+              {/* Discreet hidden player (audio only, no visible UI) */}
+              <div className="absolute inset-0 -z-10 opacity-0 pointer-events-none" aria-hidden="true">
+                <iframe
+                  ref={funcionRef}
+                  width="320"
+                  height="180"
+                  src={`https://www.youtube.com/embed/${FUNCION_VIDEO_ID}?enablejsapi=1&playsinline=1&rel=0`}
+                  title="Reproductor oculto de Comienza la función"
+                  allow="autoplay; encrypted-media"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+
+              {/* Cover Artwork */}
+              <div className="relative aspect-video w-full rounded-xl overflow-hidden mb-6 bg-black shadow-lg">
+                <img
+                  src={funcionCover}
+                  alt="Acróbata enmascarada — fotograma de Makhaira"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              {/* Track info */}
+              <div className="text-center mb-6">
+                <h3 className="font-display text-2xl font-bold text-white tracking-wide">
+                  Comienza la función
+                </h3>
+              </div>
+
+              {/* Minimalist play button */}
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => togglePlayer(funcionRef.current, funcionPlaying, setFuncionPlaying)}
+                  aria-pressed={funcionPlaying}
+                  aria-label={funcionPlaying ? 'Pausar Comienza la función' : 'Reproducir Comienza la función'}
+                  className="flex items-center justify-center w-16 h-16 rounded-full bg-[#a8d30d] text-[#0a0e14] hover:bg-[#b9e320] transition-colors shadow-lg shadow-[#a8d30d]/20 cursor-pointer"
+                >
+                  {funcionPlaying ? (
+                    <Pause className="w-7 h-7" fill="currentColor" />
+                  ) : (
+                    <Play className="w-7 h-7 ml-0.5" fill="currentColor" />
+                  )}
+                </button>
+              </div>
+
+              <p className="mt-4 text-[9px] text-slate-500 text-center font-mono uppercase tracking-widest">
+                {funcionPlaying ? 'Reproduciendo…' : 'Presiona para escuchar'}
               </p>
             </div>
           </div>
