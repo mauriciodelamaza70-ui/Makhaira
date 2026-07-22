@@ -63,7 +63,7 @@ export default function Footer() {
         {/* Closing details bar */}
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600">
           <div>
-            <span>© {currentYear} VEO PRODUCTION CORP. TODOS LOS DERECHOS RESERVADOS.</span>
+            <span>© {currentYear} Mauricio de la Maza-Benignos. Todos los derechos reservados.</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -73,7 +73,7 @@ export default function Footer() {
             </span>
             <span className="flex items-center gap-1.5">
               <Shield className="w-4 h-4 text-slate-700" />
-              <span>Clasificación: R [18+]</span>
+              <span>Contenido para audiencia adulta</span>
             </span>
           </div>
         </div>
