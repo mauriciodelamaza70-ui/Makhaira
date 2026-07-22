@@ -34,9 +34,9 @@ export default function Header() {
   const menuItems = [
     { name: 'Portada', id: 'hero' },
     { name: 'El Póster', id: 'poster-section' },
-    { name: 'Detrás de Escena', id: 'photography-section' },
     { name: 'Reparto', id: 'cast-section' },
     { name: 'Banda Sonora', id: 'soundtrack-section' },
+    { name: 'Detrás de Escena', id: 'photography-section' },
   ];
 
   return (
