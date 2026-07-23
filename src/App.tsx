@@ -102,10 +102,18 @@ export default function App() {
                   referrerPolicy="no-referrer"
                   className="object-cover w-full h-full object-[65%_center] scale-105 filter saturate-[0.95] contrast-[1.05]"
                 />
-                {/* Softer overall dark overlay (~40%) to preserve atmosphere and texture */}
-                <div className="absolute inset-0 bg-[#0d131a]/40 pointer-events-none" />
-                {/* Stronger bottom gradient to keep the subtitle and buttons legible */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/70 to-transparent pointer-events-none" />
+                {/* Light overall dark overlay (~25%) so the backdrop photo stays clear and visible */}
+                <div className="absolute inset-0 bg-[#0d131a]/25 pointer-events-none" />
+                {/* Localized radial darkening centered behind the title/subtitle to keep text legible without dimming the whole image */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(13,19,26,0.72) 0%, rgba(13,19,26,0.45) 45%, rgba(13,19,26,0) 75%)',
+                  }}
+                />
+                {/* Stronger bottom gradient to keep the buttons legible */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/55 to-transparent pointer-events-none" />
                 {/* Subtle side vignette blend into the page background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a]/70 via-transparent to-[#0d131a]/70 pointer-events-none" />
               </div>
