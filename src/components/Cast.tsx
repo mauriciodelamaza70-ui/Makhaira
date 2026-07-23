@@ -60,19 +60,21 @@ export default function Cast() {
     },
   ];
 
+  // Photos matched by VISUAL IDENTITY (not upload order), per the client's
+  // detailed descriptions of each frame.
   const principalCast: CastMember[] = [
-    { actor: 'Jessica Mendiolea', character: 'Romina', photo: cast01 },
-    { actor: 'Vicente Galindo', character: 'Makhaira', photo: cast02 },
-    { actor: 'Justin Pérez', character: 'Lucas', photo: cast03 },
-    { actor: 'Grecia Meza', character: 'Mesalina', photo: cast04 },
-    { actor: 'Mónica Muruato', character: 'Paula', photo: cast05 },
-    { actor: 'Oscar Alvizo', character: 'Punto y Coma', photo: cast06 },
-    { actor: 'Amelie Flores', character: 'Esclava de Mesalina', photo: cast07 },
-    { actor: 'Ricky Rojas', character: 'Onán', photo: cast08 },
+    { actor: 'Jessica Mendiolea', character: 'Romina', photo: cast10 },
+    { actor: 'Vicente Galindo', character: 'Makhaira', photo: cast03 },
+    { actor: 'Justin Pérez', character: 'Lucas', photo: cast05 },
+    { actor: 'Grecia Meza', character: 'Mesalina', photo: cast01 },
+    { actor: 'Mónica Muruato', character: 'Paula', photo: cast12 },
+    { actor: 'Oscar Alvizo', character: 'Punto y Coma', photo: cast08 },
+    { actor: 'Amelie Flores', character: 'Esclava de Mesalina', photo: cast04 },
+    { actor: 'Ricky Rojas', character: 'Onán', photo: cast11 },
     { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09 },
-    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast10 },
-    { actor: 'Sergio Quiñones', character: 'El senador', photo: cast11 },
-    { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast12 },
+    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast02 },
+    { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06 },
+    { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast07 },
   ];
 
   return (
