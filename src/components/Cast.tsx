@@ -21,6 +21,7 @@ import cast12 from '../assets/images/cast_12.png';
 import cast13 from '../assets/images/cast_13.png';
 import cast14 from '../assets/images/cast_14.png';
 import cast15 from '../assets/images/cast_15.png';
+import cast16 from '../assets/images/cast_16.png';
 
 interface CreditGroup {
   id: string;
@@ -83,6 +84,7 @@ export default function Cast() {
     { actor: 'Edna Rayna Agundis', character: 'La mujer de la noche', photo: cast14 },
     { actor: 'Erick Garza Morales', character: 'El empresario', photo: cast13 },
     { actor: 'Oscar Tamez', character: 'Benjamín', photo: cast15 },
+    { actor: 'Luis Ángel Rivera', character: 'Aarón', photo: cast16 },
   ];
 
   return (
