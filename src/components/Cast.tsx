@@ -30,6 +30,8 @@ interface CastMember {
   actor: string;
   character: string;
   photo: string;
+  // Optional CSS object-position to fine-tune face framing within the 3:4 crop.
+  objectPosition?: string;
 }
 
 export default function Cast() {
@@ -65,15 +67,15 @@ export default function Cast() {
   const principalCast: CastMember[] = [
     { actor: 'Jessica Mendiolea', character: 'Romina', photo: cast10 },
     { actor: 'Vicente Galindo', character: 'Makhaira', photo: cast03 },
+    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast02, objectPosition: 'center 25%' },
     { actor: 'Justin Pérez', character: 'Lucas', photo: cast05 },
     { actor: 'Grecia Meza', character: 'Mesalina', photo: cast01 },
-    { actor: 'Mónica Muruato', character: 'Paula', photo: cast12 },
+    { actor: 'Mónica Muruato', character: 'Paula', photo: cast12, objectPosition: '70% center' },
     { actor: 'Oscar Alvizo', character: 'Punto y Coma', photo: cast08 },
     { actor: 'Amelie Flores', character: 'Esclava de Mesalina', photo: cast04 },
     { actor: 'Ricky Rojas', character: 'Onán', photo: cast11 },
-    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09 },
-    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast02 },
-    { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06 },
+    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09, objectPosition: 'center 30%' },
+    { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06, objectPosition: '75% center' },
     { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast07 },
   ];
 
@@ -117,6 +119,7 @@ export default function Cast() {
                     alt={`${member.actor} como ${member.character}`}
                     loading="lazy"
                     decoding="async"
+                    style={{ objectPosition: member.objectPosition ?? 'center' }}
                     className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e14] via-transparent to-transparent opacity-80 pointer-events-none" />
