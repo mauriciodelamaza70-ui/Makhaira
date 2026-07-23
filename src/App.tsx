@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 
 // Import our film still to act as the massive backdrop
 import heroBackdrop from './assets/images/hero_makhaira_backdrop.png';
+import makhairaLogo from './assets/images/makhaira_logo.png';
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -137,12 +138,13 @@ export default function App() {
                     DE LA MAZA CONSULTING & FILMS PRESENTA
                   </span>
                   
-                  <h1 
-                    className="font-display text-5xl sm:text-7xl md:text-8xl font-black tracking-widest uppercase leading-tight font-cinzel-forced text-center flex flex-col items-center justify-center select-none"
-                    style={{ fontFamily: '"Cinzel", serif' }}
-                  >
-                    <span className="gold-chiseled-title">EL GRAN</span>
-                    <span className="gold-chiseled-title mt-2 sm:mt-4">MAKHAIRA</span>
+                  <h1 className="w-full flex items-center justify-center select-none">
+                    <span className="sr-only">El Gran Makhaira</span>
+                    <img
+                      src={makhairaLogo}
+                      alt="El Gran Makhaira"
+                      className="w-full max-w-[280px] sm:max-w-md md:max-w-2xl lg:max-w-3xl h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
+                    />
                   </h1>
 
                   {/* Aesthetic typography details (Grave theme tagline) */}
