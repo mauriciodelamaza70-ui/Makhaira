@@ -18,6 +18,10 @@ import cast09 from '../assets/images/cast_09.png';
 import cast10 from '../assets/images/cast_10.png';
 import cast11 from '../assets/images/cast_11.png';
 import cast12 from '../assets/images/cast_12.png';
+import cast13 from '../assets/images/cast_13.png';
+import cast14 from '../assets/images/cast_14.png';
+import cast15 from '../assets/images/cast_15.png';
+import cast16 from '../assets/images/cast_16.png';
 
 interface CreditGroup {
   id: string;
@@ -77,6 +81,10 @@ export default function Cast() {
     { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09, objectPosition: '62% center' },
     { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06, objectPosition: '75% center' },
     { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast07 },
+    { actor: 'Edna Rayna Agundis', character: 'La mujer de la noche', photo: cast14, objectPosition: '30% center' },
+    { actor: 'Erick Garza Morales', character: 'El empresario', photo: cast13, objectPosition: '62% center' },
+    { actor: 'Oscar Tamez', character: 'Benjamín', photo: cast15 },
+    { actor: 'Luis Ángel Rivera', character: 'Aarón', photo: cast16 },
   ];
 
   return (
