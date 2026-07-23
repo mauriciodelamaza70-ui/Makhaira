@@ -67,14 +67,14 @@ export default function Cast() {
   const principalCast: CastMember[] = [
     { actor: 'Jessica Mendiolea', character: 'Romina', photo: cast10 },
     { actor: 'Vicente Galindo', character: 'Makhaira', photo: cast03 },
+    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast02, objectPosition: 'center 25%' },
     { actor: 'Justin Pérez', character: 'Lucas', photo: cast05 },
     { actor: 'Grecia Meza', character: 'Mesalina', photo: cast01 },
     { actor: 'Mónica Muruato', character: 'Paula', photo: cast12, objectPosition: '70% center' },
     { actor: 'Oscar Alvizo', character: 'Punto y Coma', photo: cast08 },
     { actor: 'Amelie Flores', character: 'Esclava de Mesalina', photo: cast04 },
     { actor: 'Ricky Rojas', character: 'Onán', photo: cast11 },
-    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09 },
-    { actor: 'Irlanda Gallardo', character: 'Magda', photo: cast02, objectPosition: 'center 25%' },
+    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09, objectPosition: 'center 30%' },
     { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06, objectPosition: '75% center' },
     { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast07 },
   ];
