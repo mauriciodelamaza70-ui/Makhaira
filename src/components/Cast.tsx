@@ -74,7 +74,7 @@ export default function Cast() {
     { actor: 'Oscar Alvizo', character: 'Punto y Coma', photo: cast08 },
     { actor: 'Amelie Flores', character: 'Esclava de Mesalina', photo: cast04 },
     { actor: 'Ricky Rojas', character: 'Onán', photo: cast11 },
-    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09, objectPosition: 'center 30%' },
+    { actor: 'Lorena Treviño', character: 'Katrina', photo: cast09, objectPosition: '62% center' },
     { actor: 'Sergio Quiñones', character: 'El senador', photo: cast06, objectPosition: '75% center' },
     { actor: 'Andrea Patrone', character: 'Anatolia', photo: cast07 },
   ];
