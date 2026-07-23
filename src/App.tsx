@@ -123,7 +123,7 @@ export default function App() {
               <div className="absolute top-1/4 left-10 w-[300px] h-[300px] rounded-full bg-[#a8d30d]/5 blur-[120px] mix-blend-color pointer-events-none" />
               <div className="absolute bottom-1/4 right-10 w-[300px] h-[300px] rounded-full bg-[#8b0000]/5 blur-[120px] mix-blend-color pointer-events-none" />
 
-              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-10">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-10">
                 {/* Release stamp */}
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#0a0e14]/80 backdrop-blur-md border border-[#1a3a4a] rounded-full">
                   <span className="w-2 h-2 rounded-full bg-[#8b0000] animate-ping" />
@@ -133,7 +133,7 @@ export default function App() {
                 </div>
 
                 {/* Massive Title display with premium font face */}
-                <div className="space-y-8 py-6 flex flex-col items-center justify-center">
+                <div className="space-y-4 sm:space-y-6 py-6 flex flex-col items-center justify-center">
                   <span className="font-display text-xs sm:text-sm uppercase tracking-[0.45em] text-[#a8d30d] block animate-flicker font-bold mb-3 sm:mb-4 pb-2 border-b border-[#a8d30d]/20 [font-variant:small-caps] select-none" style={{ fontFamily: '"Cinzel", serif' }}>
                     DE LA MAZA CONSULTING & FILMS PRESENTA
                   </span>
@@ -143,7 +143,7 @@ export default function App() {
                     <img
                       src={makhairaLogo}
                       alt="El Gran Makhaira"
-                      className="w-full max-w-[400px] sm:max-w-xl md:max-w-3xl lg:max-w-4xl h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
+                      className="w-full max-w-[540px] sm:max-w-3xl md:max-w-5xl lg:max-w-6xl h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
                     />
                   </h1>
 
