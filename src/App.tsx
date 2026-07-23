@@ -134,7 +134,7 @@ export default function App() {
 
                 {/* Massive Title display with premium font face */}
                 <div className="space-y-8 py-6 flex flex-col items-center justify-center">
-                  <span className="font-display text-xs sm:text-sm uppercase tracking-[0.45em] text-[#a8d30d] block animate-flicker font-bold mb-6 pb-2 border-b border-[#a8d30d]/20 [font-variant:small-caps] select-none" style={{ fontFamily: '"Cinzel", serif' }}>
+                  <span className="font-display text-xs sm:text-sm uppercase tracking-[0.45em] text-[#a8d30d] block animate-flicker font-bold mb-3 sm:mb-4 pb-2 border-b border-[#a8d30d]/20 [font-variant:small-caps] select-none" style={{ fontFamily: '"Cinzel", serif' }}>
                     DE LA MAZA CONSULTING & FILMS PRESENTA
                   </span>
                   
@@ -143,7 +143,7 @@ export default function App() {
                     <img
                       src={makhairaLogo}
                       alt="El Gran Makhaira"
-                      className="w-full max-w-[280px] sm:max-w-md md:max-w-2xl lg:max-w-3xl h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
+                      className="w-full max-w-[400px] sm:max-w-xl md:max-w-3xl lg:max-w-4xl h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
                     />
                   </h1>
 
