@@ -18,6 +18,8 @@ import makhairaLogo from './assets/images/makhaira_logo.png';
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
   const [mutedAlert, setMutedAlert] = useState(true);
+  // Lightweight scroll offset for the hero backdrop parallax (no video, CSS transform only)
+  const [heroScrollY, setHeroScrollY] = useState(0);
 
   // Cinematic Intro Sequence Timer
   useEffect(() => {
@@ -25,6 +27,28 @@ export default function App() {
       setIntroFinished(true);
     }, 2800);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Lightweight parallax: move the backdrop slower than the page content on scroll.
+  // Throttled with requestAnimationFrame and only tracked while the hero is on screen.
+  useEffect(() => {
+    let rafId = 0;
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        // Only bother updating while the hero is roughly in view (perf-friendly)
+        if (y < window.innerHeight * 1.2) {
+          setHeroScrollY(y);
+        }
+        rafId = 0;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const handleHeroScroll = () => {
@@ -95,28 +119,35 @@ export default function App() {
               id="hero"
               className="relative min-h-[95vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-black"
             >
-              {/* Parallax-style giant backdrop of the character under warm light and green ambience */}
-              <div className="absolute inset-0 z-0">
+              {/* Parallax giant backdrop of the character under warm light and green ambience.
+                  Extra scale (125%) gives headroom so the transform never reveals empty edges. */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
                 <img
                   src={heroBackdrop}
                   alt="Encuadre dramático de El gran Makhaira"
                   referrerPolicy="no-referrer"
-                  className="object-cover w-full h-full object-[65%_center] scale-105 filter saturate-[0.95] contrast-[1.05]"
+                  className="object-cover w-full h-full object-[65%_center] scale-125 filter saturate-[0.95] contrast-[1.05] will-change-transform"
+                  style={{ transform: `translate3d(0, ${heroScrollY * 0.35}px, 0) scale(1.25)` }}
                 />
-                {/* Very light overall dark overlay (~15%) so the backdrop photo stays clear and visible */}
-                <div className="absolute inset-0 bg-[#0d131a]/15 pointer-events-none" />
-                {/* Localized radial darkening centered behind the title/subtitle to keep text legible without dimming the whole image */}
+                {/* Radial vignette: darker at the edges, brighter/transparent at the center so the
+                    backdrop reads clearly while the centered logo + text stay legible */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(13,19,26,0.75) 0%, rgba(13,19,26,0.45) 45%, rgba(13,19,26,0) 75%)',
+                      'radial-gradient(ellipse 75% 70% at 50% 45%, rgba(13,19,26,0) 0%, rgba(13,19,26,0.12) 40%, rgba(13,19,26,0.55) 75%, rgba(13,19,26,0.9) 100%)',
+                  }}
+                />
+                {/* Gentle center scrim strictly behind the title/quote to guarantee text contrast */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'radial-gradient(ellipse 55% 42% at 50% 44%, rgba(13,19,26,0.45) 0%, rgba(13,19,26,0.18) 55%, rgba(13,19,26,0) 80%)',
                   }}
                 />
                 {/* Stronger bottom gradient to keep the buttons legible */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/50 to-transparent pointer-events-none" />
-                {/* Subtle side vignette blend into the page background */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0d131a]/55 via-transparent to-[#0d131a]/55 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-[#0d131a]/45 to-transparent pointer-events-none" />
               </div>
 
               {/* Ambient visual dust particles and fog simulation (exact theme coloring) */}
@@ -133,7 +164,7 @@ export default function App() {
                 </div>
 
                 {/* Massive Title display with premium font face */}
-                <div className="space-y-4 sm:space-y-6 py-6 flex flex-col items-center justify-center">
+                <div className="space-y-3 sm:space-y-4 py-2 flex flex-col items-center justify-center">
                   <span className="font-display text-xs sm:text-sm uppercase tracking-[0.45em] text-[#a8d30d] block animate-flicker font-bold mb-3 sm:mb-4 pb-2 border-b border-[#a8d30d]/20 [font-variant:small-caps] select-none" style={{ fontFamily: '"Cinzel", serif' }}>
                     DE LA MAZA CONSULTING & FILMS PRESENTA
                   </span>
@@ -148,7 +179,7 @@ export default function App() {
                   </h1>
 
                   {/* Aesthetic typography details (Grave theme tagline) */}
-                  <div className="w-16 h-[1.5px] bg-[#8b0000] mx-auto my-6" />
+                  <div className="w-16 h-[1.5px] bg-[#8b0000] mx-auto my-2" />
                   <p 
                     className="font-display italic text-slate-350 text-xs sm:text-sm md:text-base tracking-wider max-w-4xl mx-auto font-cinzel-forced font-medium text-center leading-relaxed"
                     style={{ fontFamily: '"Cinzel", serif' }}
