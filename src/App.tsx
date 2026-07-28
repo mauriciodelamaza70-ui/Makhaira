@@ -103,6 +103,11 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Header fixed navigation bar — rendered OUTSIDE the animated wrapper so its
+          position: fixed is always relative to the viewport (an animated ancestor with a
+          transform would otherwise become its containing block and drop it into the hero) */}
+      {introFinished && <Header />}
+
       <AnimatePresence>
         {introFinished && (
           <motion.div
@@ -111,9 +116,6 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="flex-1 flex flex-col"
           >
-            {/* Header fixed navigation bar */}
-            <Header />
-
             {/* Cinematic Hero Segment */}
             <section
               id="hero"
@@ -129,13 +131,14 @@ export default function App() {
                   className="object-cover w-full h-full object-[65%_center] scale-125 filter saturate-[0.95] contrast-[1.05] will-change-transform"
                   style={{ transform: `translate3d(0, ${heroScrollY * 0.35}px, 0) scale(1.25)` }}
                 />
-                {/* Radial vignette: darker at the edges, brighter/transparent at the center so the
-                    backdrop reads clearly while the centered logo + text stay legible */}
+                {/* Radial vignette: brightest point sits over the man's eye (upper-left of the
+                    backdrop), darkening toward the edges. Slightly raised center opacity so the
+                    face no longer looks overexposed. */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(ellipse 75% 70% at 50% 45%, rgba(13,19,26,0) 0%, rgba(13,19,26,0.12) 40%, rgba(13,19,26,0.55) 75%, rgba(13,19,26,0.9) 100%)',
+                      'radial-gradient(ellipse 80% 75% at 9% 18%, rgba(13,19,26,0.18) 0%, rgba(13,19,26,0.28) 40%, rgba(13,19,26,0.6) 75%, rgba(13,19,26,0.9) 100%)',
                   }}
                 />
                 {/* Gentle center scrim strictly behind the title/quote to guarantee text contrast */}
