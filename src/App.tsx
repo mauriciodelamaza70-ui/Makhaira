@@ -128,8 +128,8 @@ export default function App() {
                   src={heroBackdrop}
                   alt="Encuadre dramático de El gran Makhaira"
                   referrerPolicy="no-referrer"
-                  className="object-cover w-full h-full object-[65%_center] scale-125 filter saturate-[0.95] contrast-[1.05] will-change-transform"
-                  style={{ transform: `translate3d(0, ${55 + heroScrollY * 0.35}px, 0) scale(1.25)` }}
+                  className="object-cover w-full h-full object-[65%_center] filter saturate-[0.95] contrast-[1.05] will-change-transform"
+                  style={{ transformOrigin: '30% center', transform: `translate3d(0, ${150 + heroScrollY * 0.3}px, 0) scale(1.3)` }}
                 />
                 {/* Radial vignette: brightest point sits over the man's eye (upper-left of the
                     backdrop), darkening toward the edges. Slightly raised center opacity so the
@@ -138,7 +138,7 @@ export default function App() {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(ellipse 80% 75% at 9% 31%, rgba(13,19,26,0.18) 0%, rgba(13,19,26,0.28) 40%, rgba(13,19,26,0.6) 75%, rgba(13,19,26,0.9) 100%)',
+                      'radial-gradient(ellipse 80% 75% at 13% 25%, rgba(13,19,26,0.18) 0%, rgba(13,19,26,0.28) 40%, rgba(13,19,26,0.6) 75%, rgba(13,19,26,0.9) 100%)',
                   }}
                 />
                 {/* Gentle center scrim strictly behind the title/quote to guarantee text contrast */}
