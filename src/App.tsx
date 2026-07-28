@@ -103,6 +103,11 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Header fixed navigation bar — rendered OUTSIDE the animated wrapper so its
+          position: fixed is always relative to the viewport (an animated ancestor with a
+          transform would otherwise become its containing block and drop it into the hero) */}
+      {introFinished && <Header />}
+
       <AnimatePresence>
         {introFinished && (
           <motion.div
@@ -111,9 +116,6 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="flex-1 flex flex-col"
           >
-            {/* Header fixed navigation bar */}
-            <Header />
-
             {/* Cinematic Hero Segment */}
             <section
               id="hero"
