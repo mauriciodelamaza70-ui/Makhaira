@@ -129,7 +129,7 @@ export default function App() {
                   alt="Encuadre dramático de El gran Makhaira"
                   referrerPolicy="no-referrer"
                   className="object-cover w-full h-full object-[65%_center] scale-125 filter saturate-[0.95] contrast-[1.05] will-change-transform"
-                  style={{ transform: `translate3d(0, ${heroScrollY * 0.35}px, 0) scale(1.25)` }}
+                  style={{ transform: `translate3d(0, ${55 + heroScrollY * 0.35}px, 0) scale(1.25)` }}
                 />
                 {/* Radial vignette: brightest point sits over the man's eye (upper-left of the
                     backdrop), darkening toward the edges. Slightly raised center opacity so the
