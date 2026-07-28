@@ -138,7 +138,7 @@ export default function App() {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(ellipse 80% 75% at 9% 18%, rgba(13,19,26,0.18) 0%, rgba(13,19,26,0.28) 40%, rgba(13,19,26,0.6) 75%, rgba(13,19,26,0.9) 100%)',
+                      'radial-gradient(ellipse 80% 75% at 9% 31%, rgba(13,19,26,0.18) 0%, rgba(13,19,26,0.28) 40%, rgba(13,19,26,0.6) 75%, rgba(13,19,26,0.9) 100%)',
                   }}
                 />
                 {/* Gentle center scrim strictly behind the title/quote to guarantee text contrast */}
