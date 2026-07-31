@@ -10,7 +10,8 @@ import pervertCover from '../assets/images/soundtrack_pervert_cover.png';
 
 const KRAKATOA_VIDEO_ID = 'sKX4okPXEyA';
 const FUNCION_VIDEO_ID = 'AR3BTkI7FJA';
-const PERVERT_VIDEO_ID = 'lned_uVHFiw';
+// Pervert plays an embedded video (replaces the cover) instead of hidden audio
+const PERVERT_VIDEO_PLAY_ID = 'ibi-OdcbD7U';
 
 interface Track {
   id: string;
@@ -53,8 +54,8 @@ export default function Soundtrack() {
   const krakatoaRef = useRef<HTMLIFrameElement>(null);
   const [funcionPlaying, setFuncionPlaying] = useState(false);
   const funcionRef = useRef<HTMLIFrameElement>(null);
-  const [pervertPlaying, setPervertPlaying] = useState(false);
-  const pervertRef = useRef<HTMLIFrameElement>(null);
+  // Pervert card: controls whether the cover photo+button or the YouTube iframe is shown
+  const [pervertVideoPlaying, setPervertVideoPlaying] = useState(false);
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
 
   function togglePlayer(
@@ -200,26 +201,24 @@ export default function Soundtrack() {
             <div className="bg-[#0a0e14] p-6 sm:p-8 rounded-2xl border border-[#1a3a4a] shadow-2xl relative overflow-hidden group">
               <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#a8d30d]/5 rounded-full blur-2xl group-hover:bg-[#a8d30d]/10 transition-colors pointer-events-none" />
 
-              {/* Discreet hidden player (audio only, no visible UI) */}
-              <div className="absolute inset-0 -z-10 opacity-0 pointer-events-none" aria-hidden="true">
-                <iframe
-                  ref={pervertRef}
-                  width="320"
-                  height="180"
-                  src={`https://www.youtube.com/embed/${PERVERT_VIDEO_ID}?enablejsapi=1&playsinline=1&rel=0`}
-                  title="Reproductor oculto de Pervert"
-                  allow="autoplay; encrypted-media"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                />
-              </div>
-
-              {/* Cover Artwork */}
+              {/* Cover Artwork — swaps to an autoplay YouTube iframe when playing (same container/dimensions) */}
               <div className="relative aspect-video w-full rounded-xl overflow-hidden mb-6 bg-black shadow-lg">
-                <img
-                  src={pervertCover}
-                  alt="Bailarina en el antro bajo luces azules y moradas — fotograma de Makhaira"
-                  className="object-cover w-full h-full"
-                />
+                {pervertVideoPlaying ? (
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src={`https://www.youtube.com/embed/${PERVERT_VIDEO_PLAY_ID}?autoplay=1&playsinline=1&rel=0`}
+                    title="Pervert — video oficial"
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                ) : (
+                  <img
+                    src={pervertCover}
+                    alt="Bailarina en el antro bajo luces azules y moradas — fotograma de Makhaira"
+                    className="object-cover w-full h-full"
+                  />
+                )}
               </div>
 
               {/* Track info */}
@@ -233,12 +232,12 @@ export default function Soundtrack() {
               <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={() => togglePlayer(pervertRef.current, pervertPlaying, setPervertPlaying)}
-                  aria-pressed={pervertPlaying}
-                  aria-label={pervertPlaying ? 'Pausar Pervert' : 'Reproducir Pervert'}
+                  onClick={() => setPervertVideoPlaying((prev) => !prev)}
+                  aria-pressed={pervertVideoPlaying}
+                  aria-label={pervertVideoPlaying ? 'Pausar Pervert' : 'Reproducir Pervert'}
                   className="flex items-center justify-center w-16 h-16 rounded-full bg-[#a8d30d] text-[#0a0e14] hover:bg-[#b9e320] transition-colors shadow-lg shadow-[#a8d30d]/20 cursor-pointer"
                 >
-                  {pervertPlaying ? (
+                  {pervertVideoPlaying ? (
                     <Pause className="w-7 h-7" fill="currentColor" />
                   ) : (
                     <Play className="w-7 h-7 ml-0.5" fill="currentColor" />
@@ -247,7 +246,7 @@ export default function Soundtrack() {
               </div>
 
               <p className="mt-4 text-[9px] text-slate-500 text-center font-mono uppercase tracking-widest">
-                {pervertPlaying ? 'Reproduciendo…' : 'Presiona para escuchar'}
+                {pervertVideoPlaying ? 'Reproduciendo…' : 'Presiona para escuchar'}
               </p>
             </div>
           </div>
