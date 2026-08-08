@@ -29,12 +29,12 @@ export default function PosterSection() {
               
               {/* Cine Lightbox Frame */}
               <div className="relative bg-[#0d131a] p-4 rounded-xl border border-[#1a3a4a] shadow-2xl">
-                <div className="relative overflow-hidden rounded-lg aspect-[3/4] w-[320px] sm:w-[380px] bg-black">
+                <div className="relative overflow-hidden rounded-lg aspect-[70/100] w-[340px] sm:w-[420px] bg-black">
                   <img
                     src={moviePoster}
                     alt="Póster Oficial El gran Makhaira"
                     referrerPolicy="no-referrer"
-                    className="object-cover w-full h-full transform transition-all duration-1000 group-hover:scale-105 animate-flicker"
+                    className="object-contain w-full h-full transform transition-all duration-1000 group-hover:scale-105 animate-flicker"
                   />
                   {/* Neon Hue overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d131a] via-transparent to-[#a8d30d]/10 mix-blend-overlay opacity-60 pointer-events-none" />
