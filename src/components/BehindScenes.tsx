@@ -42,8 +42,41 @@ function buildUrl(resource: CloudinaryResource, width?: number): string {
   return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${transforms.join(',')}/v${resource.version}/${resource.public_id}.${resource.format}`;
 }
 
+// Per-category presentation (label, footer code and icon) so each card and the
+// lightbox render the correct badge without altering the existing BTS styling.
+const CATEGORY_META: Record<Category, { label: string; footerTag: string; icon: typeof Film }> = {
+  stills: { label: 'Fotografías (Stills)', footerTag: 'STILL', icon: Camera },
+  bts: { label: 'Detrás de Cámaras', footerTag: 'BTS', icon: Film },
+};
+
+// Fixed batch of official stills hosted in Cloudinary (delivered as HD 16:9 frames).
+const STILLS_RESOURCES: CloudinaryResource[] = [
+  { version: 1786245413, public_id: '8295d1c9f54d95949741db69c9c739ec_pw80pw', format: 'jpg' },
+  { version: 1786245414, public_id: 'ChatGPT_Image_8_ago_2026_07_28_17_p.m._fgpbbj', format: 'jpg' },
+  { version: 1786245414, public_id: 'ChatGPT_Image_8_ago_2026_07_28_58_p.m._llhnt5', format: 'jpg' },
+  { version: 1786245415, public_id: 'ChatGPT_Image_8_ago_2026_07_35_50_p.m._wizznl', format: 'jpg' },
+  { version: 1786245416, public_id: 'ChatGPT_Image_8_ago_2026_07_43_34_p.m._ryq3o5', format: 'jpg' },
+  { version: 1786245417, public_id: 'ChatGPT_Image_8_ago_2026_07_43_45_p.m._hm87kh', format: 'jpg' },
+  { version: 1786245418, public_id: 'ChatGPT_Image_8_ago_2026_07_45_27_p.m._gm6tak', format: 'jpg' },
+  { version: 1786245419, public_id: 'ChatGPT_Image_8_ago_2026_07_50_40_p.m._jsbe2w', format: 'jpg' },
+  { version: 1786245420, public_id: 'ChatGPT_Image_8_ago_2026_07_51_45_p.m._aboyat', format: 'jpg' },
+  { version: 1786245420, public_id: 'ChatGPT_Image_8_ago_2026_07_56_22_p.m._mxtagy', format: 'jpg' },
+  { version: 1786245421, public_id: 'ChatGPT_Image_8_ago_2026_07_57_40_p.m._of9a9c', format: 'jpg' },
+  { version: 1786245422, public_id: 'ChatGPT_Image_8_ago_2026_08_49_27_p.m._yz46zv', format: 'jpg' },
+  { version: 1786245423, public_id: 'ChatGPT_Image_8_ago_2026_08_59_32_p.m._eaf5eb', format: 'jpg' },
+  { version: 1786245496, public_id: 'ChatGPT_Image_8_ago_2026_09_00_56_p.m._a0410k', format: 'jpg' },
+];
+
+const STILLS: GalleryAsset[] = STILLS_RESOURCES.map((resource, index) => ({
+  id: `still-${resource.public_id}`,
+  title: `Fotografía (Still) · ${String(index + 1).padStart(2, '0')}`,
+  thumbSrc: buildUrl(resource, 800),
+  fullSrc: buildUrl(resource, 1600),
+  category: 'stills',
+}));
+
 export default function BehindScenes() {
-  const [items, setItems] = useState<GalleryAsset[]>([]);
+  const [items, setItems] = useState<GalleryAsset[]>(STILLS);
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryAsset | null>(null);
   const [activeFilter, setActiveFilter] = useState<'all' | Category>('all');
@@ -71,7 +104,8 @@ export default function BehindScenes() {
         }));
 
         if (!cancelled) {
-          setItems(mapped);
+          // Keep the fixed stills batch and append the BTS resources fetched by tag.
+          setItems([...STILLS, ...mapped]);
           setStatus('success');
         }
       } catch (err) {
@@ -131,7 +165,7 @@ export default function BehindScenes() {
         </div>
 
         {/* Loading state */}
-        {status === 'loading' && (
+        {status === 'loading' && items.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-slate-400">
             <Loader2 className="w-8 h-8 animate-spin text-[#4682b4]" />
             <span className="font-mono text-xs uppercase tracking-widest">Cargando galería...</span>
@@ -139,7 +173,7 @@ export default function BehindScenes() {
         )}
 
         {/* Error state */}
-        {status === 'error' && (
+        {status === 'error' && items.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-slate-400 text-center max-w-md mx-auto">
             <ImageOff className="w-8 h-8 text-[#8b0000]" />
             <span className="font-mono text-xs uppercase tracking-widest">No se pudieron cargar las imágenes</span>
@@ -150,7 +184,7 @@ export default function BehindScenes() {
         )}
 
         {/* Empty state */}
-        {status === 'success' && visibleItems.length === 0 && (
+        {status !== 'loading' && visibleItems.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-slate-400 text-center">
             <ImageOff className="w-8 h-8 text-slate-600" />
             <span className="font-mono text-xs uppercase tracking-widest">
@@ -162,7 +196,7 @@ export default function BehindScenes() {
         )}
 
         {/* Gallery Grid */}
-        {status === 'success' && visibleItems.length > 0 && (
+        {visibleItems.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {visibleItems.map((item, index) => (
               <motion.div
@@ -189,10 +223,16 @@ export default function BehindScenes() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
                   <div className="absolute top-4 left-4">
-                    <span className="font-mono text-[9px] uppercase tracking-widest font-bold px-2.5 py-1 rounded inline-flex items-center gap-1.5 border bg-[#a8d30d]/10 border-[#a8d30d]/20 text-[#a8d30d]">
-                      <Film className="w-3 h-3" />
-                      Detrás de Cámaras
-                    </span>
+                    {(() => {
+                      const meta = CATEGORY_META[item.category];
+                      const BadgeIcon = meta.icon;
+                      return (
+                        <span className="font-mono text-[9px] uppercase tracking-widest font-bold px-2.5 py-1 rounded inline-flex items-center gap-1.5 border bg-[#a8d30d]/10 border-[#a8d30d]/20 text-[#a8d30d]">
+                          <BadgeIcon className="w-3 h-3" />
+                          {meta.label}
+                        </span>
+                      );
+                    })()}
                   </div>
 
                   <div className="absolute bottom-4 right-4 bg-black/70 backdrop-blur-sm p-1.5 rounded-lg border border-[#1a3a4a]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -211,7 +251,7 @@ export default function BehindScenes() {
                       <Camera className="w-3.5 h-3.5 text-slate-600" />
                       <span>El gran Makhaira</span>
                     </div>
-                    <span>BTS</span>
+                    <span>{CATEGORY_META[item.category].footerTag}</span>
                   </div>
                 </div>
               </motion.div>
@@ -260,7 +300,7 @@ export default function BehindScenes() {
               <div className="p-6 flex items-center justify-between gap-4 border-t border-[#1a3a4a]/40 bg-[#0a0e14]">
                 <div>
                   <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#a8d30d] block mb-1 font-bold">
-                    Detrás de Cámaras
+                    {CATEGORY_META[selectedPhoto.category].label}
                   </span>
                   <h3 className="font-display text-xl font-black text-white tracking-wide">
                     {selectedPhoto.title}
