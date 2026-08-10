@@ -35,6 +35,7 @@ export default function Header() {
     { name: 'Portada', id: 'hero' },
     { name: 'El Póster', id: 'poster-section' },
     { name: 'Reparto', id: 'cast-section' },
+    { name: 'Prensa', id: 'press-section' },
     { name: 'Banda Sonora', id: 'soundtrack-section' },
     { name: 'Detrás de Escena', id: 'photography-section' },
   ];
