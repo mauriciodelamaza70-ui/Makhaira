@@ -7,6 +7,8 @@ interface PressReview {
   publication: string;
   title: string;
   author?: string;
+  type?: string;
+  year?: string;
   url: string;
 }
 
@@ -20,6 +22,15 @@ const REVIEWS: PressReview[] = [
     title:
       'El Gran Makhaira: la película noir hecha en Nuevo León con un elenco 100% regio',
     url: 'https://lovet.com.es/el-gran-makhaira/',
+  },
+  {
+    id: 'sector-nostalgia',
+    publication: 'Sector Nostalgia',
+    type: 'Nota de estreno',
+    year: '2026',
+    title:
+      'El Gran Makhaira, llega a la pantalla grande con una historia sobre el poder, la violencia y los límites del espectáculo',
+    url: 'https://www.sectornostalgia.com/2026/08/el-gran-makhaira-llega-la-pantalla.html',
   },
 ];
 
@@ -107,9 +118,15 @@ export default function Press() {
                 {review.title}
               </h3>
 
-              {review.author && (
+              {review.author ? (
                 <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
                   Por {review.author}
+                </p>
+              ) : (review.type || review.year) && (
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
+                  {review.type}
+                  {review.type && review.year && <span className="text-[#8b0000] mx-1.5">·</span>}
+                  {review.year}
                 </p>
               )}
 
