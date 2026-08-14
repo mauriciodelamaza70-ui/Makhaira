@@ -32,6 +32,14 @@ const REVIEWS: PressReview[] = [
       'El Gran Makhaira, llega a la pantalla grande con una historia sobre el poder, la violencia y los límites del espectáculo',
     url: 'https://www.sectornostalgia.com/2026/08/el-gran-makhaira-llega-la-pantalla.html',
   },
+  {
+    id: 'tec-sounds-radio',
+    publication: 'Tec Sounds Radio 94.9 XHTEC-FM',
+    type: 'Entrevista de radio (en vivo)',
+    year: '2026',
+    title: 'Desde el Campus — entrevista en vivo',
+    url: 'https://www.youtube.com/watch?v=AwOkRxwT04I&t=2700s',
+  },
 ];
 
 export default function Press() {
