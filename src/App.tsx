@@ -9,6 +9,7 @@ import TrailerSection from './components/TrailerSection';
 import BehindScenes from './components/BehindScenes';
 import Cast from './components/Cast';
 import Press from './components/Press';
+import PressKit from './components/PressKit';
 import Soundtrack from './components/Soundtrack';
 import Footer from './components/Footer';
 
@@ -258,6 +259,9 @@ export default function App() {
 
             {/* Press & Critical coverage segment */}
             <Press />
+
+            {/* Press Kit download segment */}
+            <PressKit />
 
             {/* Sound Synthesizer & Soundtrack segment */}
             <Soundtrack />
