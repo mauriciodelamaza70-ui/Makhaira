@@ -40,6 +40,13 @@ const REVIEWS: PressReview[] = [
     title: 'Desde el Campus — entrevista en vivo',
     url: 'https://www.youtube.com/watch?v=AwOkRxwT04I&t=2700s',
   },
+  {
+    id: 'passpartout',
+    publication: 'Passpartout',
+    author: 'Gris Cruz',
+    title: 'El Gran Makhaira: una grieta para mirar lo que somos',
+    url: 'https://passpartout.com.mx/post/el-gran-makhaira-una-grieta-para-mirar-lo-que-somos',
+  },
 ];
 
 export default function Press() {
@@ -95,6 +102,27 @@ export default function Press() {
           tragedia noir que usa el circo como metáfora del poder, con ecos de Tarkovsky, Kubrick y
           Jodorowsky, y un diálogo filosófico que atraviesa a Camus y Cioran.
         </motion.p>
+
+        {/* Secondary pull quote */}
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+          className="max-w-3xl mx-auto text-center mb-16 border-t border-[#1a3a4a]/45 pt-14"
+        >
+          <Quote className="w-6 h-6 text-[#a8d30d]/40 mx-auto mb-5" aria-hidden="true" />
+          <blockquote
+            className="font-display italic font-cinzel-forced text-[#a8d30d] text-2xl sm:text-3xl md:text-4xl leading-tight tracking-wide text-balance drop-shadow-[0_2px_16px_rgba(168,211,13,0.15)]"
+            style={{ fontFamily: '"Cinzel", serif' }}
+          >
+            "Esa es una constante en su cine: sostener la grieta el tiempo suficiente para que el
+            espectador pueda mirar a través de ella."
+          </blockquote>
+          <figcaption className="mt-6 font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-slate-400">
+            Gris Cruz <span className="text-[#8b0000] mx-1">·</span> Passpartout
+          </figcaption>
+        </motion.figure>
 
         {/* Reviews grid — expands as more coverage is added */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
