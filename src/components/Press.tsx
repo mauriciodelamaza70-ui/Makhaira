@@ -124,6 +124,55 @@ export default function Press() {
           </figcaption>
         </motion.figure>
 
+        {/* Featured press clipping — the printed article bridges to the digital note */}
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+          className="max-w-4xl mx-auto mb-20"
+        >
+          <div className="text-center mb-8">
+            <Quote className="w-6 h-6 text-[#a8d30d]/40 mx-auto mb-5" aria-hidden="true" />
+            <blockquote
+              className="font-display italic font-cinzel-forced text-[#a8d30d] text-2xl sm:text-3xl md:text-4xl leading-tight tracking-wide text-balance drop-shadow-[0_2px_16px_rgba(168,211,13,0.15)]"
+              style={{ fontFamily: '"Cinzel", serif' }}
+            >
+              "Amante de lo absurdo, disruptivo y contrario a las clásicas narrativas
+              hollywoodenses…"
+            </blockquote>
+            <figcaption className="mt-6 font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-slate-400">
+              El Norte <span className="text-[#8b0000] mx-1">·</span> Paula Ruiz
+            </figcaption>
+          </div>
+
+          <a
+            href="https://www.elnorte.com/busca-mauricio-de-la-maza-benignos-provocar-con-su-cine/ar3265888"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block overflow-hidden rounded-lg border border-[#1a3a4a]/60 bg-[#0a0e14] transition-colors duration-300 hover:border-[#a8d30d]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a8d30d]/60"
+            aria-label="Leer la nota completa de El Norte: Busca provocar con su cine (abre en una pestaña nueva)"
+          >
+            <img
+              src="/prensa_el_norte_makhaira.png"
+              alt="Recorte del periódico El Norte con el artículo 'Busca provocar con su cine' por Paula Ruiz sobre Mauricio de la Maza-Benignos y El Gran Makhaira"
+              referrerPolicy="no-referrer"
+              className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            {/* Hover veil + CTA */}
+            <div className="absolute inset-0 flex items-end justify-between gap-4 bg-gradient-to-t from-[#0a0e14]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-300 inline-flex items-center gap-2">
+                <Newspaper className="w-3.5 h-3.5 text-[#a8d30d]" />
+                El Norte — edición impresa
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#a8d30d] inline-flex items-center gap-1.5 font-bold">
+                Leer nota completa
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </span>
+            </div>
+          </a>
+        </motion.figure>
+
         {/* Reviews grid — expands as more coverage is added */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {REVIEWS.map((review, index) => (
