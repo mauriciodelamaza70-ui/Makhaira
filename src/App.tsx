@@ -248,6 +248,47 @@ export default function App() {
               )}
             </section>
 
+            {/* Auteur statement — bilingual coda bridging the hero into the film */}
+            <section className="relative bg-[#0d131a] border-t border-[#1a3a4a]/40 py-20 sm:py-24 overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-[#a8d30d]/5 blur-[130px] pointer-events-none" />
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.7 }}
+                className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+              >
+                {/* Bloque en Español */}
+                <span
+                  className="font-display italic font-cinzel-forced text-[#a8d30d] text-2xl sm:text-3xl md:text-4xl tracking-wide block mb-6 drop-shadow-[0_2px_16px_rgba(168,211,13,0.15)]"
+                  style={{ fontFamily: '"Cinzel", serif' }}
+                >
+                  Una película de autor
+                </span>
+                <p className="font-serif-elegant text-[#e0e0e0] text-sm sm:text-base leading-relaxed text-pretty">
+                  <span className="font-semibold text-white">El Gran Makhaira</span> forma parte del lenguaje cinematográfico desarrollado por Mauricio de la Maza: un cine de ritmo deliberadamente contemplativo, proximidad física, atmósferas claustrofóbicas y rupturas de las convenciones narrativas. La película no busca ofrecer respuestas cerradas, sino colocar al espectador dentro de una experiencia donde el absurdo, la violencia, la reflexión filosófica y la percepción se encuentran.
+                </p>
+
+                {/* Divisor Elegante */}
+                <div className="flex items-center gap-4 py-2 mt-8 mb-8">
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#4682b4]/30 to-transparent" />
+                  <span className="font-display font-medium text-[9px] uppercase tracking-[0.3em] text-[#4682b4] whitespace-nowrap">English Translation</span>
+                  <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-[#4682b4]/30 to-transparent" />
+                </div>
+
+                {/* Bloque en Inglés */}
+                <span
+                  className="font-display italic font-cinzel-forced text-[#a8d30d]/85 text-xl sm:text-2xl md:text-3xl tracking-wide block mb-6"
+                  style={{ fontFamily: '"Cinzel", serif' }}
+                >
+                  An Auteur Film
+                </span>
+                <p className="font-serif-elegant italic text-[#b0b0b0] text-xs sm:text-sm leading-relaxed text-pretty">
+                  <span className="font-semibold not-italic text-slate-200">El Gran Makhaira</span> is part of the cinematic language developed by Mauricio de la Maza: a form of filmmaking characterized by a deliberately contemplative pace, physical proximity, claustrophobic atmospheres, and a challenge to conventional narrative structures. The film does not seek to provide definitive answers, but rather to place the viewer within an experience where absurdity, violence, philosophical reflection, and perception converge.
+                </p>
+              </motion.div>
+            </section>
+
             {/* Poster & Streaming Outlets segment */}
             <PosterSection />
 
